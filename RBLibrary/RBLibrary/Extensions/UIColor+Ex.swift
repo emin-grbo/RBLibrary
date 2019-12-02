@@ -14,10 +14,6 @@ extension UIColor {
     class var stroke:           UIColor { return UIColor(hex: "#4109C7FF")! }
     class var lightShadow:      UIColor { return UIColor(hex: "#6C42E2FF")! }
     class var darkShadow:       UIColor { return UIColor(hex: "#2E04A2FF")! }
-    
-    
-    
-
 }
 
 // MARK: Getting the colors from HEX value
@@ -26,12 +22,12 @@ extension UIColor {
         self.init(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255,
                   alpha: CGFloat(alpha))
     }
-
+    
     convenience init(_ red: Double, _ green: Double, _ blue: Double) {
         self.init(red: CGFloat(red)/255, green: CGFloat(green)/255,blue: CGFloat(blue)/255,
                   alpha: CGFloat(1.0))
     }
-
+    
     public convenience init?(hex: String) {
         let r, g, b, a: CGFloat
         

@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIView {
+    
     func addShadow(offset: CGSize, color: UIColor, radius: CGFloat, opacity: Float) {
         layer.masksToBounds = false
         layer.shadowOffset = offset
@@ -44,10 +45,7 @@ extension UIView {
     
     func addGradinet(startColor: UIColor, endColor: UIColor) {
         guard let gradientLayer = self.layer as? CAGradientLayer else { return }
-        gradientLayer.colors = [
-            startColor.cgColor,
-            endColor.cgColor
-        ]
+        gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
     }

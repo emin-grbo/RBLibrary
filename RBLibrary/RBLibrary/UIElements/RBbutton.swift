@@ -11,10 +11,16 @@ import UIKit
 
 class RBbutton: UIButton {
     
-    let layerBase = CALayer()
-    let layerDark = CALayer()
-    let layerLight = CALayer()
-    let innerShadow = CALayer()
+    let layerBase       = CALayer()
+    let layerDark       = CALayer()
+    let layerLight      = CALayer()
+    let innerShadow     = CALayer()
+    
+    var lightShadow     : UIColor = .lightShadow
+    var darkShadow      : UIColor = .darkShadow
+    var primary         : UIColor = .primary
+    var primaryDark     : UIColor = .primaryDark
+    var radius          : CGFloat = 5
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,8 +38,6 @@ class RBbutton: UIButton {
         titleLabel?.textAlignment = .center
         setTitleColor(.white, for: .normal)
         setTitleColor(.white, for: .selected)
-        
-        addGradinet(startColor: .white, endColor: .black)
     }
     
     func tapDown() {
@@ -66,18 +70,17 @@ class RBbutton: UIButton {
             lay.shadowPath = path.cgPath
             lay.masksToBounds = true
             lay.cornerRadius = frame.height / 2
-            lay.backgroundColor = UIColor.clear.cgColor
             layer.addSublayer(lay)
         }
+
+        layerBase.addGradinet(startColor: primaryDark, endColor: primary)
         
-        layerBase.addGradinet(startColor: .primary, endColor: .primaryDark)
-        
-        layerLight.addShadow(offset: CGSize.init(width: -3, height: -3), color: .lightShadow, radius: 5, opacity: 0.7)
-        layerDark.addShadow(offset: CGSize.init(width: 7, height: 7), color: .darkShadow, radius: 5, opacity: 0.7)
+        layerLight.addShadow(offset: CGSize.init(width: -3, height: -3), color: lightShadow, radius: radius, opacity: 1)
+        layerDark.addShadow(offset: CGSize.init(width: 5, height: 5), color: darkShadow, radius: radius, opacity: 1)
 
         path.append(cutout)
         innerShadow.shadowPath = path.cgPath
-        innerShadow.addShadow(offset: CGSize(width: 0, height: 0), color: .black, radius: 5, opacity: 0.5, maskToBounds: true)
+        innerShadow.addShadow(offset: CGSize(width: 0, height: 2), color: .black, radius: radius, opacity: 0.3, maskToBounds: true)
 
         self.bringSubviewToFront(titleLabel!)
     }
